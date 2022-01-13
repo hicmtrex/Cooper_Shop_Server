@@ -6,6 +6,7 @@ import productRoutes from './routes/productRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
+import { errorHandler, notFound } from './middleware/errormiddleware.js';
 
 dotenv.config();
 connectDb();
@@ -17,6 +18,9 @@ app.use(morgan('dev'));
 app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
+
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 

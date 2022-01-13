@@ -12,6 +12,18 @@ export const userRegister = asyncHandler(async (req, res) => {
     throw new Error('User already exist');
   }
 
+  if (
+    !email ||
+    !email.includes('@') ||
+    !username ||
+    username.trim() === '' ||
+    !password ||
+    password.trim() === ''
+  ) {
+    res.status(422);
+    throw new Error('Invalid input.');
+  }
+
   let user = new User({ username, email, password });
 
   if (user) {
@@ -39,7 +51,7 @@ export const userLogin = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(400);
-    throw new Error('Email or password i wrong');
+    throw new Error('email or password wrong');
   }
 });
 
