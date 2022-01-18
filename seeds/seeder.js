@@ -1,9 +1,8 @@
 import colors from 'colors';
 import dotenv from 'dotenv';
 import connectDb from '../config/db.js';
-import Category from '../models/categoryModels.js';
 import Product from '../models/productModels.js';
-import products, { category } from './products.js';
+import { products } from './products.js';
 
 dotenv.config();
 

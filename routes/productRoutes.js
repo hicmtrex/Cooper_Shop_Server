@@ -8,6 +8,7 @@ import {
   getRandomProducts,
   getTopProducts,
 } from '../controllers/productControllers.js';
+import { protect } from '../middleware/authmiddleware.js';
 
 const router = express.Router();
 
@@ -17,7 +18,7 @@ router.route('/top-product').get(getTopProducts);
 router
   .route('/:id')
   .get(getProductById)
-  .post(updateProduct)
-  .delete(deleteProduct);
+  .put(updateProduct)
+  .delete(protect, deleteProduct);
 
 export default router;

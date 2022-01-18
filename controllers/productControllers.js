@@ -70,7 +70,7 @@ export const updateProduct = asyncHandler(async (req, res) => {
     specifications,
   } = req.body;
 
-  const product = await Product.findById(req.params.id);
+  let product = await Product.findById(req.params.id);
 
   if (product) {
     product.name = name;
@@ -83,8 +83,8 @@ export const updateProduct = asyncHandler(async (req, res) => {
     product.category = category;
     product.specifications = specifications;
 
-    const updatedProduct = await product.save();
-    res.status(200).json(updatedProduct);
+    product = await product.save();
+    res.status(200).json(product);
   } else {
     res.status(400);
     throw new Error('Something went wrong!...');
