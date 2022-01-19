@@ -5,7 +5,7 @@ export const createOrder = asyncHandler(async (req, res) => {
   const { cartItems, shippingAddress, totalPrice } = req.body;
 
   const order = new Order({
-    user: req.body.user,
+    user: req.user._id,
     cartItems,
     shippingAddress,
     totalPrice,
